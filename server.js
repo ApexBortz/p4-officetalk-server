@@ -1,11 +1,12 @@
-// simple server implementation
-const io = require("socket.io")(7000, {
+// server implementation
+const io = require('socket.io')(7000, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"]
   }
 });
 
+// socket connection
 io.on('connection', socket => {
   const id = socket.handshake.query.id
   socket.join(id)
