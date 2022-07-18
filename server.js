@@ -1,3 +1,4 @@
+// simple server implementation
 const io = require('socket.io')(7000)
 
 io.on('connection', socket => {
@@ -7,7 +8,9 @@ io.on('connection', socket => {
   // adds sender to message sent & removes the recipients so that the sender of the message is displayed
   // & they will have proper list of recipients
   socket.on('send-message', ({ recipients, text }) => {
+
     recipients.forEach(recipient => {
+      // swapping out recipients
       const newRecipients = recipients.filter(recipient => (
         recipient !== recipient))
       newRecipients.push(id)
