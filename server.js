@@ -11,16 +11,16 @@ io.on('connection', socket => {
   const id = socket.handshake.query.id
   socket.join(id)
 
-  // adds sender to message sent & removes the recipients so that the sender of the message is displayed
-  // & they will have proper list of recipients
+  // adds sender to message & removes the recipient so that the sender of the message is displayed
+  // to the recipient & not the recipient
   socket.on('send-message', ({ recipients, text }) => {
 
     recipients.forEach(recipient => {
-      // swapping out recipients
+      // swap out recipient name for sender name
       const newRecipients = recipients.filter(recipient => (
         recipient !== recipient))
       newRecipients.push(id)
-      // boradcast to room if message has been sent
+      // boradcast / send the message 
       socket.broadcast.to(recipient).emit('receive-message', { 
         recipients: newRecipients, sender: id, text
       })
