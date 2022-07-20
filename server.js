@@ -8,7 +8,10 @@ const io = require('socket.io')(7000, {
 
 // socket connection
 io.on('connection', socket => {
+  // socket handshake query to get input id or newly created id
   const id = socket.handshake.query.id
+  
+  // join with input or created id
   socket.join(id)
 
   // adds sender to message & removes the recipient so that the sender of the message is displayed
