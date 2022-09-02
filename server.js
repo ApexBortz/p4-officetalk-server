@@ -1,5 +1,5 @@
 // server implementation
-const io = require('socket.io')(7000, {
+const io = require('socket.io')(3000, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
